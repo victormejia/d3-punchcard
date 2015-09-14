@@ -3,6 +3,7 @@
   "author": "Victor Mejia",
   "devDependencies": {
     "browser-sync": "^2.9.3",
-    "gulp": "^3.9.0"
+    "gulp": "^3.9.0",
+    "gulp-gh-pages": "^0.5.2"
   }
 }
