@@ -1,8 +1,0 @@
-{
-  "name": "d3-workshop",
-  "author": "Victor Mejia",
-  "devDependencies": {
-    "browser-sync": "^2.9.3",
-    "gulp": "^3.9.0"
-  }
-}
