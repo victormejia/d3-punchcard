@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  /*background: #2d353c;*/
 }
 
 .container {
@@ -15,12 +16,14 @@ body {
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #c0c0c0;
   shape-rendering: crispEdges;
 }
 
 .axis text {
-  font-family: sans-serif;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  fill: #777;
 }
 
 .circle {
