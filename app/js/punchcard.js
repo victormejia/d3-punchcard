@@ -53,13 +53,12 @@
       return d[2];
     });
 
-    // setup linear scale
+    // setup a sqrt scale
     // input values are [0, maxCommits]
-    // output values are [0, 12] (arbitrary max radius)
+    // output values are [0, 11] (arbitrary max radius)
 
 
-
-
+    
     // 3. setup axis
 
     // x axis should utiilze the "x" scale

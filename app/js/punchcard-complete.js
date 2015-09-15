@@ -42,9 +42,9 @@
       return d[2];
     });
 
-    var r = d3.scale.linear()
+    var r = d3.scale.sqrt()
       .domain([0, maxR])
-      .range([0, 12])
+      .range([0, 11])
 
     // setup axis
     var xAxis = d3.svg.axis()
