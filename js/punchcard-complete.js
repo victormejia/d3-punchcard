@@ -44,7 +44,7 @@
 
     var r = d3.scale.sqrt()
       .domain([0, maxR])
-      .range([0, 11])
+      .range([0, 18])
 
     // setup axis
     var xAxis = d3.svg.axis()
@@ -100,8 +100,9 @@
         .transition()
         .duration(1000)
         .attr('r', function(d) {
-          var radius = Math.ceil(r(d[2]));
-          return radius > 0 ? Math.ceil(radius * 1.5) : 0;
+          // var radius = Math.ceil(r(d[2]));
+          // return radius > 0 ? Math.ceil(radius * 1.5) : 0;
+          return r(d[2]);
         })
 
   }
