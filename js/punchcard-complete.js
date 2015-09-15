@@ -100,10 +100,8 @@
         .transition()
         .duration(1000)
         .attr('r', function(d) {
-          // var radius = Math.ceil(r(d[2]));
-          // return radius > 0 ? Math.ceil(radius * 1.5) : 0;
           return r(d[2]);
-        })
+        });
 
   }
 
