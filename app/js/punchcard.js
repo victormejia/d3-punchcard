@@ -3,7 +3,10 @@
 
   var data;
 
-  d3.json('https://api.github.com/repos/angular/angular/stats/punch_card', function(error, json) {
+  // var dataUrl = 'https://api.github.com/repos/angular/angular/stats/punch_card';
+  var dataUrl = 'punch_card.json';
+
+  d3.json(dataUrl, function(error, json) {
     data = json;
     visualize();
   });
@@ -26,69 +29,81 @@
 
     /* Create Viz
     ----------------------------------------------*/
-    // setup scales
-    var x = d3.scale.linear()
-      .domain([0, 23])
-      .range([0, width]);
 
-    var y = d3.scale.linear()
-      .domain([0, 6])
-      .range([0, height]);
 
-    var maxR = d3.max(data, function(d) {
+
+    // 2. Setup scales
+
+    // the "x" scale should be a linear scale
+    // input values are [0, 23]
+    // output values are [0, width]
+
+
+    // the "y" scale should be a linear scale
+    // input values are [0, 6]
+    // output valies are [0, height]
+
+
+
+
+    // 6. setup scale for radius
+
+    // first get the max number of commits
+    var maxCommits = d3.max(data, function(d) {
       return d[2];
     });
 
-    var r = d3.scale.linear()
-      .domain([0, maxR])
-      .range([0, 12])
+    // setup linear scale
+    // input values are [0, maxCommits]
+    // output values are [0, 12] (arbitrary max radius)
 
-    // setup axis
-    var xAxis = d3.svg.axis()
-      .scale(x)
-      .orient('bottom')
-      .ticks(24)
-      .tickFormat(function (d, i) {
-        var suffix = (d > 12) ? 'p' : 'a';
-        var time = (d%12 === 0) ? 12 : d%12;
-        return time + suffix;
-      })
 
-    var yAxis = d3.svg.axis()
-      .scale(y)
-      .orient('left')
-      .ticks(7)
-      .tickFormat(function (d, i) {
-        return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][d];
-      })
 
-    svg.append('g')
-      .attr('class', 'axis')
-      .attr('transform', 'translate(' + [0, height] + ')')
-      .call(xAxis);
 
-    svg.append('g')
-      .attr('class', 'axis')
-      .call(yAxis);
+    // 3. setup axis
 
-    svg.selectAll('circle')
-      .data(data)
-      .enter()
-      .append('circle')
-        .attr('class', 'circle')
-        .attr('cx', function(d) {
-          return x(d[1]);
-        })
-        .attr('cy', function(d) {
-          return y(d[0]);
-        })
-        .attr('r', 0)
-        .transition()
-        .duration(1000)
-        .attr('r', function(d) {
-          var radius = Math.ceil(r(d[2]));
-          return radius > 0 ? Math.ceil(radius * 1.5) : 0;
-        });
+    // x axis should utiilze the "x" scale
+    // tick orientation should be 'bottom'
+    // there should be a total of 24 ticks
+    // format the ticks accordingly. you can use the following:
+    //      .tickFormat(function (d, i) {
+    //        var suffix = (d > 12) ? 'p' : 'a';
+    //        var time = (d%12 === 0) ? 12 : d%12;
+    //        return time + suffix;
+    //      })
+
+    // y axis should utilize the "y" scale
+    // tick orientation should be 'left'
+    /// there should be a total of 7 ticks
+    // format the ticks accordingly. You can use the following:
+    //    .tickFormat(function (d, i) {
+    //      return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][d];
+    //    })
+
+
+
+    // 4. append the axis to the svg
+
+    // append x axis
+    // give it a class of 'axis'
+    // transform it accordingly: translate(0, height)
+    // .call(xAxis)
+
+
+    // append y axis
+    // give it a class of 'axis'
+
+
+
+
+    // 5. create the main visualization
+
+    // data join to the data and enter()
+    // append circle, and style all the attributes accordingly
+    //    cx, cy, r
+    // remember, each datum is of the form [1, 9, 20] - 20 total commits
+    // during the 9:00am hour on Mondays
+
 
   }
 
